@@ -18,7 +18,7 @@ def decorator(exceptions: list[tuple[type[Exception], Callable[[Exception], None
     return outer
 
 
-def bar():
+def bar(e):
     print("1")
 
 
@@ -27,10 +27,13 @@ def bar():
     (IndexError, lambda e: print("2"))
 ])
 def foo():
-    if randint(1, 2) == 1:
-        raise KeyError("bar")
-    else:
+    random_num = randint(1, 3)
+    if random_num == 1:
+        raise KeyError()
+    elif random_num == 2:
         raise IndexError()
+    else:
+        print("3")
 
 
 foo()
